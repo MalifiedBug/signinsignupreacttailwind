@@ -12,7 +12,7 @@ export default function SignUp() {
   if (response === "user added") {
     setTimeout(() => {
       navigate("/signin");
-    }, 4000);
+    }, 1000);
   }
 
   return (
@@ -27,7 +27,6 @@ export default function SignUp() {
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
             Create an account
           </h2>
-          
         </div>
         <Formik
           initialValues={{
@@ -50,23 +49,23 @@ export default function SignUp() {
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             const { email, password } = values;
+            setResponse(null);
             setTimeout(() => {
+              const url = "https://signinbackend.onrender.com/signup";
+              fetch(url, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+              })
+                .then((data) => data.json())
+                .then((response) => setResponse(response.msg))
+                .catch((error) => alert(error));
               //   alert(JSON.stringify({email:email,password:password}, null, 2));
               setSubmitting(false);
-            }, 400);
-
-            const url = "https://signinbackend.onrender.com/signup";
-            fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email, password }),
-            })
-              .then((data) => data.json())
-              .then((response) => setResponse(response.msg))
-              .catch((error) => alert(error))
-              .then(resetForm());
+            }, 4000);
+           
           }}
         >
           <Form method="POST" className="mt-8 space-y-6">
@@ -107,16 +106,20 @@ export default function SignUp() {
                 </ErrorMessage>
               </div>
             </div>
+            <div>
+              {response === null ? (
+                <div class="flex justify-center">
+                  <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-4 m-4 h-8 w-8"></div>
+                </div>
+              ) : null}
+            </div>
+
             {response ? (
               <div>
                 {response === "user added" ? (
                   <Alert severity="success">{response}</Alert>
                 ) : (
-                  
-                    <Alert severity="error">{response}</Alert>
-                    
-                  
-                  
+                  <Alert severity="error">{response}</Alert>
                 )}
               </div>
             ) : null}
