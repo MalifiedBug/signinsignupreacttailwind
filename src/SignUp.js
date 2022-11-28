@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Alert from "@mui/material/Alert";
 
@@ -85,7 +86,7 @@ export default function SignUp() {
               <div>
                 <Field
                   placeholder="Password"
-                  className="relative block w-full rounded-t-md appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   name="password"
                   type="password"
                 />
@@ -97,7 +98,7 @@ export default function SignUp() {
               <div>
                 <Field
                   placeholder="Confirm Password"
-                  className="relative block w-full rounded-t-md appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full rounded-b-md appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   name="confirmpassword"
                   type="password"
                 />
@@ -124,12 +125,12 @@ export default function SignUp() {
               </div>
             ) : null}
             <div className="text-sm">
-              <a
-                href="/signin"
+              <Link   
+              to="/signin"             
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Already a member? Sign In!
-              </a>
+              </Link>
             </div>
 
             <div>

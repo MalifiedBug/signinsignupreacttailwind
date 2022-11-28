@@ -24,5 +24,5 @@ export default function Protected() {
     fetchData();
   }, [token]);
 
-  return <div><h1>This is protected Page{data}</h1></div>;
+  return <div className="flex justify-center m-20"><h1 className="text-6xl ">This is protected Page{data}</h1></div>;
 }
