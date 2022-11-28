@@ -24,5 +24,5 @@ export default function Protected() {
     fetchData();
   }, [token]);
 
-  return <div><h1>This is protected Page</h1></div>;
+  return <div><h1>This is protected Page{data}</h1></div>;
 }
