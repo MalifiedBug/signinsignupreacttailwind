@@ -40,7 +40,6 @@ export default function SendEmail() {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setResponse(null);            
             const { email } = values;
-            localStorage.setItem("email",email)
             setTimeout(() => {
               const url = "https://signinbackend.onrender.com/sendmail";
               try {

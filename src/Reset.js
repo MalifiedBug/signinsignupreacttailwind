@@ -31,11 +31,14 @@ export default function SignUp() {
         </div>
         <Formik
           initialValues={{
-           
+            email: "",           
             password: "",
             confirmpassword: "",
           }}
           validationSchema={Yup.object({
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("Required"),
             
             password: Yup.string()
               .required("Password is required")
@@ -47,8 +50,8 @@ export default function SignUp() {
             ),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            const email = localStorage.getItem("email");
-            const { password } = values;
+            
+            const { email, password } = values;
             setResponse(null);            
             setTimeout(() => {
               const url = "https://signinbackend.onrender.com/reset";
@@ -71,11 +74,22 @@ export default function SignUp() {
           <Form method="POST" className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
+            <div>
+                <Field
+                  placeholder="Email"
+                  className="relative block w-full rounded-t-md appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  name="email"
+                  type="email"
+                />
+                <ErrorMessage sx={{ color: "red" }} name="email">
+                  {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+                </ErrorMessage>
+              </div>
               
               <div>
                 <Field
                   placeholder="New Password"
-                  className="rounded-t-md relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className=" relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   name="password"
                   type="password"
                 />
