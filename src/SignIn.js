@@ -60,11 +60,13 @@ export default function SignIn() {
                 })
                   .then((data) => data.json())
                   .then((response) => {
+                    console.log(response);
                     setResponse(response.msg);
                     setToken(response.token);
-                  })
-                  .then(sessionStorage.setItem("email", email))
-                  .then(sessionStorage.setItem("token", response.token));
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("token", response.token);
+                  })                  
+                 
               } catch (error) {
                 alert(error);
               }
