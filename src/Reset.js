@@ -46,12 +46,12 @@ export default function SignUp() {
               "Passwords must match"
             ),
           })}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          onSubmit={(values, { setSubmitting }) => {
             const email = localStorage.getItem("email");
             const { password } = values;
             setResponse(null);            
             setTimeout(() => {
-              const url = "http://localhost:4000/reset";
+              const url = "https://signinbackend.onrender.com/reset";
               fetch(url, {
                 method: "POST",
                 headers: {

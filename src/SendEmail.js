@@ -42,7 +42,7 @@ export default function SendEmail() {
             const { email } = values;
             localStorage.setItem("email",email)
             setTimeout(() => {
-              const url = "http://localhost:4000/sendmail";
+              const url = "https://signinbackend.onrender.com/sendmail";
               try {
                 fetch(url, {
                   method: "POST",
